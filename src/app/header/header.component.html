@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <a mat-button [routerLink]="['/']">
+    Home
+  </a>
+  <a mat-button [routerLink]="['/to-do-list']">
+    My Todo List
+  </a>
+  <a mat-button [routerLink]="['/about']">
+    About
+  </a>
+  <span class="fill-remaining-space"></span>
+  <button mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Add
+  </button>
+  <button  *ngIf="!isAuthenticated" mat-button>
+    <mat-icon>input</mat-icon>
+    Login
+  </button>
+  <div *ngIf="isAuthenticated">
+    Welcome Ahmed!!!
+    <button mat-button >
+      <mat-icon>input</mat-icon>
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
