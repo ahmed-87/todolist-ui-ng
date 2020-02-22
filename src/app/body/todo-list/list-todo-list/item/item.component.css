@@ -1,0 +1,10 @@
+.mat-card{
+    box-shadow: none;
+}
+.mat-card-actions{
+    float: right;
+}
+
+.mat-card-content{
+    display: unset;
+}
