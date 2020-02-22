@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from 'rxjs';
-import User from '../user/user.model';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivate, CanDeactivate } from '@angular/router';
-import { AuthComponent } from './auth.component';
-// import "gapi.auth2";
+import User from '../user/user';
+import {  Router } from '@angular/router';
 
 declare const gapi: any;
 

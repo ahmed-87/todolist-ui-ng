@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef , OnDestroy, AfterViewInit } from '@angular/core';
 import AuthService from '../auth/auth.service';
-import User from '../user/user.model';
+import User from '../user/user';
 import { Subscription } from 'rxjs';
 
 @Component({

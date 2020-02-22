@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http } from "@angular/http";
 import { Observable } from 'rxjs';
-import User from './user.model';
+import User from './user';
 
 
 @Injectable()
@@ -22,15 +22,6 @@ class UserService {
             , { headers: this.headers }
         );
     };
-
-    // signIn = (userProfile: User) => {
-    //     return {
-    //         userId: userProfile.userId.toString().substring(8),
-    //         firstName : userProfile.getGivenName(),
-    //         lastName : userProfile.getFamilyName(),
-    //         email : userProfile.getEmail()
-    //     }
-    // } 
 }
 
 export default UserService;
