@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
+import AuthService from '../auth/auth.service';
 
 
 
@@ -18,7 +19,7 @@ import { RouterModule } from '@angular/router';
         MaterialModule
     ],
     exports: [HeaderComponent],
-    providers: []
+    providers: [AuthService]
 })
 
 export class HeaderModule {

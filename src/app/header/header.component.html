@@ -13,13 +13,13 @@
     <mat-icon>add</mat-icon>
     Add
   </button>
-  <button  *ngIf="!isAuthenticated" mat-button>
+  <button  *ngIf="!isAuthenticated" mat-button (click) = "handleSignIn()">
     <mat-icon>input</mat-icon>
     Login
   </button>
   <div *ngIf="isAuthenticated">
-    Welcome Ahmed!!!
-    <button mat-button >
+    {{this.fullName}}
+    <button mat-button (click) = "handleSignOut()">
       <mat-icon>input</mat-icon>
       Logout
     </button>
