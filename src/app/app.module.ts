@@ -13,12 +13,14 @@ import { ModalComponent } from './modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import LoadingMaskService from './loading-mask/loading-mask.service';
 import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalComponent,
-    LoadingMaskComponent
+    LoadingMaskComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
