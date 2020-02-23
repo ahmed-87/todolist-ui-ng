@@ -8,16 +8,10 @@
             <td-update-todo [todo]="todo"></td-update-todo>
             <button color="primary" mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>arrow_drop_down</mat-icon>
-                  </button>
+            </button>
             <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>
-                      <mat-icon>close</mat-icon>
-                      <span>Remove</span>
-                    </button>
-                <button mat-menu-item>
-                      <mat-icon>check</mat-icon>
-                      <span>Mark Done</span>
-                    </button>
+                <td-delete-todo [todo]="todo"></td-delete-todo>
+                <td-mark-todo *ngIf="!todo.completed" [todo]="todo"></td-mark-todo>
             </mat-menu>
         </mat-card-actions>
     </mat-card>
