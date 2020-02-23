@@ -1,0 +1,8 @@
+.todo-form,
+.todo-full-width {
+    width: 100%;
+}
+
+.mat-dialog-content {
+    overflow: hidden;
+}

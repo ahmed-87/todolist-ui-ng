@@ -1,0 +1,20 @@
+<div>
+    <h1 mat-dialog-title>ToDo Form</h1>
+    <div mat-dialog-content>
+        <form class="todo-form">
+            <mat-form-field class="todo-full-width">
+                <mat-label>Title</mat-label>
+                <input name="title" matInput placeholder="Title" [(ngModel)]="data.title">
+            </mat-form-field>
+            <mat-form-field class="todo-full-width">
+                <mat-label>Description</mat-label>
+                <textarea name="description" matInput placeholder="..." [(ngModel)]="data.description"></textarea>
+            </mat-form-field>
+            <mat-slide-toggle name="completed" color="primary" checked="data.completed" [(ngModel)]="data.completed">Is ToDo Completed?</mat-slide-toggle>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+        <button mat-raised-button (click)="handleClick()">Cancel</button>
+    </div>
+</div>
