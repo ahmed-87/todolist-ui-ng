@@ -10,6 +10,8 @@ import { ItemComponent } from './todo-list/list-todo-list/item/item.component';
 import ToDoService from './todo-list/todo.service';
 import { HttpModule } from '@angular/http';
 import { UpdateToDo } from './todo-list/update-todo.component';
+import { MarkToDo } from './todo-list/mark-todo.component';
+import { DeleteToDo } from './todo-list/delete-todo.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +20,8 @@ import { UpdateToDo } from './todo-list/update-todo.component';
         ListTodoListComponent,
         ItemComponent,
         UpdateToDo,
+        DeleteToDo,
+        MarkToDo
     ],
     imports: [
         CommonModule,
