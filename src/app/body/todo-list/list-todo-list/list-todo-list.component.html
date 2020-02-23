@@ -1,10 +1,8 @@
 <mat-card class="todo-list-container">
     <mat-card-content>
-            <td-item></td-item>
-            <mat-divider [inset]="true"></mat-divider>
-            <td-item></td-item>
-            <mat-divider [inset]="true"></mat-divider>
-            <td-item></td-item>
-            <mat-divider [inset]="true"></mat-divider>
+            <div *ngFor="let todo of todoList">
+                <td-item [todo] = "todo"></td-item>
+                <mat-divider [inset]="true"></mat-divider>
+            </div>
     </mat-card-content>
 </mat-card>

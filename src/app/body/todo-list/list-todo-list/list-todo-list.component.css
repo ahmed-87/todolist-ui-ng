@@ -4,15 +4,15 @@
     margin-right: auto;
 }
 
-.todo-list{
+.todo-list {
     padding-left: 30px;
     padding-right: 30px;
 }
 
-.mat-divider{
+.mat-divider {
     display: inline-block;
 }
 
-.mat-divider:last-child{
+div:last-child .mat-divider {
     display: none;
 }

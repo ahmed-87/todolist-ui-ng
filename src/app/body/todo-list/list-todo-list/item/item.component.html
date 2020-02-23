@@ -1,26 +1,24 @@
-
-    <div>
-        <mat-card>
-            <mat-card-title>Finish todo</mat-card-title>
-            <mat-card-content>dddddddddddddddddddddddd</mat-card-content>
-            <mat-card-actions>
-                <button mat-flat-button color="primary">
-                    Edit
-                  </button>
-                  <button color="primary" mat-icon-button [matMenuTriggerFor]="menu">
+<div>
+    <mat-card>
+        <mat-card-title>{{todo.title}} - {{completedMap.get(todo.completed)}}</mat-card-title>
+        <mat-card-content>
+            {{todo.description}}
+        </mat-card-content>
+        <mat-card-actions>
+            <td-update-todo [todo]="todo"></td-update-todo>
+            <button color="primary" mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>arrow_drop_down</mat-icon>
                   </button>
-                  <mat-menu #menu="matMenu"  xPosition="before">
-                    <button mat-menu-item>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>
                       <mat-icon>close</mat-icon>
                       <span>Remove</span>
                     </button>
-                    <button mat-menu-item>
+                <button mat-menu-item>
                       <mat-icon>check</mat-icon>
                       <span>Mark Done</span>
                     </button>
-                  </mat-menu>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-
+            </mat-menu>
+        </mat-card-actions>
+    </mat-card>
+</div>
