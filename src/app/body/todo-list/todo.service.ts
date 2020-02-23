@@ -61,8 +61,26 @@ class ToDoService {
             , { headers: this.headers }
         );
     }
-    // deleteTodo
-    // markDone
+    
+    deleteTodo = (todo: Todo): Observable<any> => {
+    
+        return this.http.delete(
+            `${this.host}/delete/${todo.id}`
+            , { headers: this.headers }
+        );
+    }
+
+    markDone = (todo: Todo): Observable<any> => {
+        todo.updatedByUserId = this.authService.getUserId();
+        todo.completed = true;
+        let requestBody = { ...todo };
+
+        return this.http.put(
+            `${this.host}/update`
+            , requestBody
+            , { headers: this.headers }
+        );
+    }
 
     listMyToDoList = () => {
         return this.todoListSubject.asObservable();
