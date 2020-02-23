@@ -1,27 +1,25 @@
 <mat-toolbar>
-  <a mat-button [routerLink]="['/']">
+    <a mat-button [routerLink]="['/']">
     Home
   </a>
-  <a mat-button [routerLink]="['/to-do-list']">
+    <a mat-button [routerLink]="['/to-do-list']">
     My Todo List
   </a>
-  <a mat-button [routerLink]="['/about']">
+    <a mat-button [routerLink]="['/about']">
     About
   </a>
-  <span class="fill-remaining-space"></span>
-  <button mat-flat-button color="primary">
-    <mat-icon>add</mat-icon>
-    Add
-  </button>
-  <button  *ngIf="!isAuthenticated" mat-button (click) = "handleSignIn()">
+    <span class="fill-remaining-space"></span>
+
+    <td-add-todo></td-add-todo>
+    <button *ngIf="!isAuthenticated" mat-button (click)="handleSignIn()">
     <mat-icon>input</mat-icon>
     Login
   </button>
-  <div *ngIf="isAuthenticated">
-    {{this.fullName}}
-    <button mat-button (click) = "handleSignOut()">
+    <div *ngIf="isAuthenticated">
+        {{this.fullName}}
+        <button mat-button (click)="handleSignOut()">
       <mat-icon>input</mat-icon>
       Logout
     </button>
-  </div>
+    </div>
 </mat-toolbar>
