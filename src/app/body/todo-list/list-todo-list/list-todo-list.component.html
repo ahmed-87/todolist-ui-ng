@@ -1,8 +1,11 @@
 <mat-card class="todo-list-container">
     <mat-card-content>
-            <div *ngFor="let todo of todoList">
-                <td-item [todo] = "todo"></td-item>
-                <mat-divider [inset]="true"></mat-divider>
-            </div>
+        <div *ngIf="todoList.length === 0">
+            There is No ToDo Item, Please click "Add" to add a ToDo item.
+        </div>
+        <div *ngFor="let todo of todoList">
+            <td-item [todo]="todo"></td-item>
+            <mat-divider [inset]="true"></mat-divider>
+        </div>
     </mat-card-content>
 </mat-card>

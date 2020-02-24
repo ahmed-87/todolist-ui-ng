@@ -1,10 +1,10 @@
-import { Component, OnDestroy, Input } from '@angular/core';
+import { Component,  Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import Todo from './todo';
 import ToDoService from './todo.service';
-import { Subscription } from 'rxjs';
 import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
+import AppService from 'src/app/app.service';
 
 @Component({
     selector: 'td-update-todo',
@@ -21,6 +21,7 @@ export class UpdateToDo {
 
     constructor(
         public dialog: MatDialog,
+        private appService: AppService,
         private todoService: ToDoService,
         private loadingMaskService: LoadingMaskService
     ) { }
@@ -61,6 +62,7 @@ export class UpdateToDo {
     }
 
     onSuccess(response: any): void {
+        this.appService.setPopupMessage("Todo Updated Successfully !!!.");
         this.todoService.getMyToDoList(this.todo.createdByUserId);
         console.log(response);
     }
@@ -68,6 +70,10 @@ export class UpdateToDo {
     onFail(error: any): void {
         console.log(error);
         this.loadingMaskService.closeLoadingMask();
+        this.appService.setPopupMessage("Error in Updating Todo Item :( .");
+        this.appService.displayPopupMessage("Ok",
+            { panelClass: "snack-bar-class-error" }
+        );
     }
 
 }

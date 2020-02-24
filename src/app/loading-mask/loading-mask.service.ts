@@ -13,6 +13,7 @@ class LoadingMaskService {
     openLoadingMask = (message: string) : void => {
         this.loadingMask = this.dialog.open(LoadingMaskComponent, {
             data: {message: message},
+            panelClass: "loading-mask-content",
             disableClose: true
         });
     };

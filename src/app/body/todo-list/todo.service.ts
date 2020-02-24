@@ -3,12 +3,19 @@ import { Headers, Http } from '@angular/http';
 import { Observable, Subject } from 'rxjs';
 import Todo from './todo';
 import AuthService from 'src/app/auth/auth.service';
+import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
+import AppService from 'src/app/app.service';
 
 
 @Injectable()
 class ToDoService {
 
-    constructor(private http: Http, private authService: AuthService) { }
+    constructor(
+        private http: Http,
+        private appService: AppService,
+        private authService: AuthService,
+        private loadingMaskService: LoadingMaskService 
+    ) { }
 
     host: string = 'http://localhost:8080/todo';
     headers = new Headers({
@@ -16,8 +23,9 @@ class ToDoService {
         'Access-Control-Allow-Origin': '*'
     });
 
-    private todoList: Todo[] = [];
+    public todoList: Todo[] = [];
     private todoListSubject = new Subject<Todo[]>();
+    private pupopMessage: string = "";
 
     getMyToDoList(userId: Number) {
         let requestBody = {
@@ -34,7 +42,7 @@ class ToDoService {
             (response) => this.onSuccess(response),
 
             //Fail
-            (error) => console.log(error),
+            (error) => this.onFail(error),
 
             //Finished
             //  () => this.appService.finishLoad(1)
@@ -61,7 +69,7 @@ class ToDoService {
             , { headers: this.headers }
         );
     }
-    
+
     deleteTodo = (todo: Todo): Observable<any> => {
     
         return this.http.delete(
@@ -85,10 +93,19 @@ class ToDoService {
     listMyToDoList = () => {
         return this.todoListSubject.asObservable();
     }
-    
+
     onSuccess(response: any): void {
         this.todoList = response.json();
         this.todoListSubject.next(this.todoList);
+    }
+
+    onFail(error: any): void {
+        console.log(error);
+        this.loadingMaskService.closeLoadingMask();
+        this.appService.setPopupMessage("Error in fetching Todo list :( .");
+        this.appService.displayPopupMessage("Ok",
+            { panelClass: "snack-bar-class-error" }
+        );
     }
 }
 

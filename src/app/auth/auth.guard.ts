@@ -10,14 +10,10 @@ export class AuthGuard implements CanActivate, CanDeactivate<AuthComponent> {
 
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-
         return this.authService.getIsSignedIn();
     }
     
     canDeactivate(component: AuthComponent): boolean {
-        // if(!this.authService.getIsSignedIn()){
-        //      this.router.navigate(["/unauth"]);
-        // }
         return this.authService.getIsSignedIn();
     }
 

@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit , AfterViewInit, OnDestroy{
 
-  isAuthenticated: Boolean = true;
+  isAuthenticated: boolean = true;
   userProfile: User;
-  fullName: String = "";
+  fullName: string = "";
   authSubscriber: Subscription;
   constructor(private authService: AuthService, private cdr: ChangeDetectorRef) { }
 
@@ -32,18 +32,10 @@ export class HeaderComponent implements OnInit , AfterViewInit, OnDestroy{
       this.isAuthenticated = isSignedIn;
       this.userProfile = userProfile;
       this.fullName = `${this.userProfile.firstName} ${this.userProfile.lastName}`;
-      this.cdr.detectChanges();
       console.log(authDate);
     });
   }
-  
- 
-  
-  ngAfterContentInit() {
-    // this.isAuthenticated = this.authService.getIsSignedIn();
-    // this.userProfile = this.authService.getUserProfile();
-    // this.fullName = `${this.userProfile.firstName} ${this.userProfile.lastName}`;
-  }
+
 
 
   ngOnDestroy() {

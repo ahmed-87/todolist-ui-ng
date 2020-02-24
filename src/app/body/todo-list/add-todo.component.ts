@@ -1,10 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import Todo from './todo';
 import ToDoService from './todo.service';
-import { Subscription } from 'rxjs';
 import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
+import AppService from 'src/app/app.service';
 
 @Component({
     selector: 'td-add-todo',
@@ -21,6 +21,7 @@ export class AddToDo {
 
     constructor(
         public dialog: MatDialog,
+        private appService: AppService,
         private todoService: ToDoService,
         private loadingMaskService: LoadingMaskService
     ) { }
@@ -41,21 +42,31 @@ export class AddToDo {
                     (response) => this.onSuccess(response),
 
                     //Fail
-                    (error) => console.log(error),
+                    (error) =>  this.onFail(error),
 
                     //Finish
                     () => this.loadingMaskService.closeLoadingMask()
                 )
             } else {
                 //Cancel button clicked
-                this.todo =   new Todo(0, "", "", 0, 0, false);
+                this.todo = new Todo(0, "", "", 0, 0, false);
             }
             console.log('The ToDo form was closed');
         });
     }
+
     onSuccess(response: any): void {
+        this.appService.setPopupMessage("Todo Added Successfully !!!.");
         this.todoService.getMyToDoList(this.todo.createdByUserId);
         console.log(response);
     }
 
+    onFail(error: any): void {
+        console.log(error);
+        this.loadingMaskService.closeLoadingMask();
+        this.appService.setPopupMessage("Error in Adding Todo Item :( .");
+        this.appService.displayPopupMessage("Ok",
+            { panelClass: "snack-bar-class-error" }
+        );
+    }
 }

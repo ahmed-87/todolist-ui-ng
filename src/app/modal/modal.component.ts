@@ -6,7 +6,6 @@ import Todo from '../body/todo-list/todo';
 
 
 @Component({
-    selector: 'td-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.css']
 })

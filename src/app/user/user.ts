@@ -1,8 +1,8 @@
 class User {
-    userId: Number;
-    firstName: String;
-    lastName: String;
-    email: String;
+    userId: number;
+    firstName: string;
+    lastName: string;
+    email: string;
 
     constructor(id: number, firstName: string, lastName: string, email: string){
         this.userId = id;

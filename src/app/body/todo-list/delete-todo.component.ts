@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from 'src/app/modal/modal.component';
 import Todo from './todo';
 import ToDoService from './todo.service';
-import { Subscription } from 'rxjs';
 import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import AppService from 'src/app/app.service';
 
 @Component({
     selector: 'td-delete-todo',
@@ -23,6 +22,7 @@ export class DeleteToDo {
 
     constructor(
         public dialog: MatDialog,
+        private appService: AppService,
         private todoService: ToDoService,
         private loadingMaskService: LoadingMaskService
     ) { }
@@ -68,6 +68,7 @@ export class DeleteToDo {
     }
 
     onSuccess(response: any): void {
+        this.appService.setPopupMessage("Todo Deleted Successfully !!!.");
         this.todoService.getMyToDoList(this.todo.createdByUserId);
         console.log(response);
     }
@@ -75,6 +76,10 @@ export class DeleteToDo {
     onFail(error: any): void {
         console.log(error);
         this.loadingMaskService.closeLoadingMask();
+        this.appService.setPopupMessage("Error in Deleting Todo Item :( .");
+        this.appService.displayPopupMessage("Ok",
+            { panelClass: "snack-bar-class-error" }
+        );
     }
 
 }

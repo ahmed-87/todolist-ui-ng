@@ -10,7 +10,7 @@
   </a>
     <span class="fill-remaining-space"></span>
 
-    <td-add-todo></td-add-todo>
+    <td-add-todo *ngIf="isAuthenticated"></td-add-todo>
     <button *ngIf="!isAuthenticated" mat-button (click)="handleSignIn()">
     <mat-icon>input</mat-icon>
     Login

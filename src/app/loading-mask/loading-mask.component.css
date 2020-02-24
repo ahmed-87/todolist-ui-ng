@@ -1,9 +1,5 @@
 .load-message {
     position: relative;
     top: -60px;
-    left: 30px;
-}
-
-.mat-dialog-content {
-    overflow: hidden;
+    left: 25px;
 }

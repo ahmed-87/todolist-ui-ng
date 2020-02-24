@@ -8,19 +8,21 @@ import { BodyModule } from './body/body.module';
 import UserService from './user/user.service';
 import AuthService from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
-import { routing } from './app.routing';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import LoadingMaskService from './loading-mask/loading-mask.service';
 import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import AppService from './app.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalComponent,
     LoadingMaskComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -28,11 +30,9 @@ import { ConfirmComponent } from './confirm/confirm.component';
     FormsModule,
     MaterialModule,
     HeaderModule,
-    BodyModule,
-    routing
+    BodyModule
   ],
-  // entryComponents: [ModalComponent],
-  providers: [AuthService, AuthGuard, UserService, LoadingMaskService],
+  providers: [AppService, AuthService, AuthGuard, UserService, LoadingMaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
