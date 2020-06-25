@@ -1,24 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component,  Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import Todo from './todo';
-import ToDoService from './todo.service';
-import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
-import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import Todo from '../todo';
+import ToDoService from '../todo.service';
+import LoadingMaskService from 'src/app/shared/loading-mask/loading-mask.service';
 import AppService from 'src/app/app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'td-delete-todo',
+    selector: 'td-update-todo',
     template: `
-    <button mat-menu-item (click) = "openDeleteConfirm()">
-        <mat-icon>close</mat-icon>
-        <span>Remove</span>
+    <button mat-flat-button color="primary" (click) = "openToDoForm()">
+        Edit
     </button>
     `,
 })
-export class DeleteToDo {
+export class UpdateToDo implements OnDestroy{
 
     @Input() todo: Todo;
     todoItem: Todo;
+    dialogCloseSub: Subscription;
 
     constructor(
         public dialog: MatDialog,
@@ -27,7 +28,7 @@ export class DeleteToDo {
         private loadingMaskService: LoadingMaskService
     ) { }
 
-    openDeleteConfirm(): void {
+    openToDoForm(): void {
         this.todoItem = new Todo(
             this.todo.id,
             this.todo.title,
@@ -35,22 +36,17 @@ export class DeleteToDo {
             this.todo.createdByUserId,
             this.todo.updatedByUserId,
             this.todo.completed,
-        );
-
-        let message = "Are you sure you want to delete this item?.";
-        let confirmBtn = "Delete";
-        const dialogRef = this.dialog.open(ConfirmComponent, {
-            data: { message, confirmBtn },
-            disableClose: true,
+        )
+        const dialogRef = this.dialog.open(ModalComponent, {
+            data: this.todoItem,
+            disableClose: true
         });
 
-        dialogRef.updatePosition({ top: `65px`});
-
-        dialogRef.afterClosed().subscribe(result => {
+        this.dialogCloseSub = dialogRef.afterClosed().subscribe(result => {
             console.log(result);
             if (result) {
                 this.loadingMaskService.openLoadingMask("Saving...");
-                this.todoService.deleteTodo(this.todoItem).subscribe(
+                this.todoService.updateTodo(result).subscribe(
                     //Success
                     (response) => this.onSuccess(response),
 
@@ -68,7 +64,7 @@ export class DeleteToDo {
     }
 
     onSuccess(response: any): void {
-        this.appService.setPopupMessage("Todo Deleted Successfully !!!.");
+        this.appService.setPopupMessage("Todo Updated Successfully !!!.");
         this.todoService.getMyToDoList(this.todo.createdByUserId);
         console.log(response);
     }
@@ -76,10 +72,13 @@ export class DeleteToDo {
     onFail(error: any): void {
         console.log(error);
         this.loadingMaskService.closeLoadingMask();
-        this.appService.setPopupMessage("Error in Deleting Todo Item :( .");
+        this.appService.setPopupMessage("Error in Updating Todo Item :( .");
         this.appService.displayPopupMessage("Ok",
             { panelClass: "snack-bar-class-error" }
         );
     }
 
+    ngOnDestroy(){
+        this.dialogCloseSub.unsubscribe();
+    }
 }

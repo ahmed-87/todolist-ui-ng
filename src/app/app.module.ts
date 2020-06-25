@@ -8,13 +8,13 @@ import { BodyModule } from './body/body.module';
 import UserService from './user/user.service';
 import AuthService from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
-import { ModalComponent } from './modal/modal.component';
+import { ModalComponent } from './shared/modal/modal.component';
 import { FormsModule } from '@angular/forms';
-import LoadingMaskService from './loading-mask/loading-mask.service';
-import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
-import { ConfirmComponent } from './confirm/confirm.component';
+import LoadingMaskService from './shared/loading-mask/loading-mask.service';
+import { LoadingMaskComponent } from './shared/loading-mask/loading-mask.component';
+import { ConfirmComponent } from './shared/confirm/confirm.component';
 import AppService from './app.service';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AuthComponent } from './auth/auth.component';
 
 @NgModule({

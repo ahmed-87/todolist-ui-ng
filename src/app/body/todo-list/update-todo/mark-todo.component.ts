@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import Todo from './todo';
-import ToDoService from './todo.service';
-import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
-import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import Todo from '../todo';
+import ToDoService from '../todo.service';
+import LoadingMaskService from 'src/app/shared/loading-mask/loading-mask.service';
+import { ConfirmComponent } from 'src/app/shared/confirm/confirm.component';
 import AppService from 'src/app/app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'td-mark-todo',
@@ -15,10 +16,11 @@ import AppService from 'src/app/app.service';
     </button>
     `,
 })
-export class MarkToDo {
+export class MarkToDo implements OnDestroy{
 
     @Input() todo: Todo;
     todoItem: Todo;
+    dialogeCloseSub: Subscription;
 
     constructor(
         public dialog: MatDialog,
@@ -46,7 +48,7 @@ export class MarkToDo {
 
         dialogRef.updatePosition({ top: `65px` });
 
-        dialogRef.afterClosed().subscribe(result => {
+        this.dialogeCloseSub = dialogRef.afterClosed().subscribe(result => {
             console.log(result);
             if (result) {
                 this.loadingMaskService.openLoadingMask("Saving...");
@@ -80,6 +82,11 @@ export class MarkToDo {
         this.appService.displayPopupMessage("Ok",
             { panelClass: "snack-bar-class-error" }
         );
+
+    }
+
+    ngOnDestroy(){
+        this.dialogeCloseSub.unsubscribe();
     }
 
 }

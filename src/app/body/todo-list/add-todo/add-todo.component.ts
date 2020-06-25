@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from 'src/app/modal/modal.component';
-import Todo from './todo';
-import ToDoService from './todo.service';
-import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import Todo from '../todo';
+import ToDoService from '../todo.service';
+import LoadingMaskService from 'src/app/shared/loading-mask/loading-mask.service';
 import AppService from 'src/app/app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'td-add-todo',
@@ -15,9 +16,10 @@ import AppService from 'src/app/app.service';
     </button>
     `,
 })
-export class AddToDo {
+export class AddToDo implements OnDestroy{
 
     todo: Todo = new Todo(0, "", "", 0, 0, false);
+    dialogeCloseSub: Subscription;
 
     constructor(
         public dialog: MatDialog,
@@ -32,7 +34,7 @@ export class AddToDo {
             disableClose: true
         });
 
-        dialogRef.afterClosed().subscribe(result => {
+        this.dialogeCloseSub = dialogRef.afterClosed().subscribe(result => {
             console.log(result);
             if (result) {
                 //Submit button clicked
@@ -74,5 +76,9 @@ export class AddToDo {
         this.appService.displayPopupMessage("Ok",
             { panelClass: "snack-bar-class-error" }
         );
+    }
+
+    ngOnDestroy(){
+        this.dialogeCloseSub.unsubscribe();
     }
 }

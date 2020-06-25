@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
 import AuthService from '../auth/auth.service';
-import { AddToDo } from '../body/todo-list/add-todo.component';
+import { AddToDo } from '../body/todo-list/add-todo/add-todo.component';
 
 
 

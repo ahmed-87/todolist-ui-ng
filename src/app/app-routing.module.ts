@@ -4,7 +4,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ListTodoListComponent } from './body/todo-list/list-todo-list/list-todo-list.component';
 import { AboutComponent } from './body/about/about.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [

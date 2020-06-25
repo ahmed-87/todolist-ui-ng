@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 import { Observable, Subject } from 'rxjs';
 import Todo from './todo';
 import AuthService from 'src/app/auth/auth.service';
-import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
+import LoadingMaskService from 'src/app/shared/loading-mask/loading-mask.service';
 import AppService from 'src/app/app.service';
 
 

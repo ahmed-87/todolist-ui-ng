@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import Todo from '../body/todo-list/todo';
+import Todo from 'src/app/body/todo-list/todo';
 
 
 

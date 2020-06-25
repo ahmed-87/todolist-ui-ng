@@ -3,7 +3,7 @@ import ToDoService from '../todo.service';
 import { Subscription } from 'rxjs';
 import AuthService from 'src/app/auth/auth.service';
 import Todo from '../todo';
-import LoadingMaskService from 'src/app/loading-mask/loading-mask.service';
+import LoadingMaskService from 'src/app/shared/loading-mask/loading-mask.service';
 import AppService from 'src/app/app.service';
 
 @Component({
