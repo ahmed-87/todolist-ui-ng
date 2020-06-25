@@ -41,9 +41,7 @@ class AuthService {
                     googleUser.getEmail()
                 );
 
-                if(window.location.pathname.includes("/unauth")){
-                    this.router.navigate(["/"]);
-                }
+                this.router.navigate(["/"]);
             } else {
                 this.isSignedIn = false;
                 this.userProfile = new User(0, "", "", "");

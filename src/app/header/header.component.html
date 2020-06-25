@@ -1,25 +1,38 @@
 <mat-toolbar>
-    <a mat-button [routerLink]="['/']">
+  <a mat-button 
+  [routerLink]="['/']" 
+  routerLinkActive="mat-primary"
+  [routerLinkActiveOptions]="{exact: true}">
     Home
   </a>
-    <a mat-button [routerLink]="['/to-do-list']">
+  <a mat-button 
+  *ngIf="isAuthenticated" 
+  [routerLink]="['/to-do-list']" 
+  routerLinkActive="mat-flat-button mat-primary">
     My Todo List
   </a>
-    <a mat-button [routerLink]="['/about']">
+  <a mat-button 
+  *ngIf="isAuthenticated" 
+  [routerLink]="['/about']" 
+  routerLinkActive="mat-flat-button mat-primary"
+  >
+  <!-- routerLinkActive="mat-primary cdk-focused cdk-program-focused" -->
     About
   </a>
-    <span class="fill-remaining-space"></span>
+  <span class="fill-remaining-space"></span>
 
-    <td-add-todo *ngIf="isAuthenticated"></td-add-todo>
-    <button *ngIf="!isAuthenticated" mat-button (click)="handleSignIn()">
+  <td-add-todo id="addButton" *ngIf="isAuthenticated"></td-add-todo>
+  <button id="authButton" *ngIf="!isAuthenticated" mat-button (click)="handleSignIn()">
     <mat-icon>input</mat-icon>
     Login
   </button>
-    <div *ngIf="isAuthenticated">
-        {{this.fullName}}
-        <button mat-button (click)="handleSignOut()">
+  <div *ngIf="isAuthenticated">
+    <span id="welcome">
+      Welcome {{this.fullName}}
+    </span>
+    <button id="authButton" mat-button (click)="handleSignOut()">
       <mat-icon>input</mat-icon>
       Logout
     </button>
-    </div>
+  </div>
 </mat-toolbar>

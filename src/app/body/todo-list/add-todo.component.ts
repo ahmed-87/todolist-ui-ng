@@ -42,7 +42,7 @@ export class AddToDo {
                     (response) => this.onSuccess(response),
 
                     //Fail
-                    (error) =>  this.onFail(error),
+                    (error) => this.onFail(error),
 
                     //Finish
                     () => this.loadingMaskService.closeLoadingMask()
@@ -56,9 +56,15 @@ export class AddToDo {
     }
 
     onSuccess(response: any): void {
-        this.appService.setPopupMessage("Todo Added Successfully !!!.");
         this.todoService.getMyToDoList(this.todo.createdByUserId);
-        console.log(response);
+        this.todo = JSON.parse(response._body).data;
+        this.todoService.emitNewToDoItem(this.todo);
+        this.todo = new Todo(0, "", "", 0, 0, false);
+        this.appService.setPopupMessage("Todo Added Successfully !!!.");
+        this.appService.displayPopupMessage("Ok",
+            { panelClass: "snack-bar-class-error" }
+        );
+
     }
 
     onFail(error: any): void {

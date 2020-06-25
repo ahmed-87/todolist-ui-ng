@@ -8,8 +8,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 const routes: Routes = [
-  { path: 'unauth', pathMatch: 'full', component: AuthComponent },
-  { path: '', redirectTo: '/to-do-list', pathMatch: 'full' },
+  { path: '', redirectTo: 'to-do-list', pathMatch: 'full' },
+  { path: 'unauth', component: AuthComponent , canDeactivate: [AuthGuard]},
   { path: 'to-do-list', component: ListTodoListComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }

@@ -9,7 +9,7 @@ class UserService {
 
     constructor(private http: Http) { }
 
-    host: string = 'http://localhost:8080/user';
+    host: string = 'http://localhost:8383/user';
     headers = new Headers({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'

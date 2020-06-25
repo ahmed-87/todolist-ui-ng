@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import Todo from '../../todo';
 
 @Component({
@@ -6,7 +6,7 @@ import Todo from '../../todo';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit ,OnDestroy {
 
   constructor() { }
 
@@ -16,8 +16,19 @@ export class ItemComponent implements OnInit {
   
  
   ngOnInit() {
+    if(window.location.pathname.includes("/to-do-list")){
+      console.log('New Item');
+    }
     this.completedMap.set(true,  "COMPLETED");
     this.completedMap.set(false,  "NOT COMPLETED");
   }
 
+
+
+
+  ngOnDestroy(){
+    if(window.location.pathname.includes("/to-do-list")){
+      console.log("Item removed");
+    }
+  }
 }

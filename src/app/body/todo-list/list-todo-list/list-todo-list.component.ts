@@ -17,6 +17,7 @@ export class ListTodoListComponent implements OnInit, AfterViewInit, OnDestroy {
   todoList: Todo[] = [];
   authSubscriber: Subscription;
   toDoListSubscriber: Subscription;
+  newToDoItemSubscriber: Subscription;
 
   constructor(
     private appService: AppService,
@@ -39,6 +40,10 @@ export class ListTodoListComponent implements OnInit, AfterViewInit, OnDestroy {
     //     }
     //   });
     // });
+
+    this.newToDoItemSubscriber = this.todoService.getNewToDoItem().subscribe((todo) => {
+      this.todoList.push(todo);
+    })
   }
   
   ngAfterViewInit(): void {

@@ -15,10 +15,12 @@ import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import AppService from './app.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     ModalComponent,
     LoadingMaskComponent,
     ConfirmComponent,

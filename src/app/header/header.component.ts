@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit , AfterViewInit, OnDestroy{
 
-  isAuthenticated: boolean = true;
+  isAuthenticated: boolean = false;
   userProfile: User;
   fullName: string = "";
   authSubscriber: Subscription;

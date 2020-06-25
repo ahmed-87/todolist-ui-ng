@@ -17,7 +17,7 @@ class ToDoService {
         private loadingMaskService: LoadingMaskService 
     ) { }
 
-    host: string = 'http://localhost:8080/todo';
+    host: string = 'http://localhost:8383/todo';
     headers = new Headers({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -25,6 +25,7 @@ class ToDoService {
 
     public todoList: Todo[] = [];
     private todoListSubject = new Subject<Todo[]>();
+    private todoItem = new Subject<Todo>();
     private pupopMessage: string = "";
 
     getMyToDoList(userId: Number) {
@@ -92,6 +93,14 @@ class ToDoService {
 
     listMyToDoList = () => {
         return this.todoListSubject.asObservable();
+    }
+
+    emitNewToDoItem = (todo: Todo) => {
+        return this.todoItem.next(todo);
+    }
+
+    getNewToDoItem = () => {
+        return this.todoItem.asObservable();
     }
 
     onSuccess(response: any): void {
